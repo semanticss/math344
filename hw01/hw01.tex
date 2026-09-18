@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\newtheorem{lemma}{Lemma}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{bbm}
+\usetikzlibrary{shapes.geometric}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+
+\pagestyle{fancy}
+\fancyhead[l]{Hudson Benites}
+\fancyhead[c]{Day 1}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
+\fancyhead[r]{\today}
+
+\begin{document}
+\begin{enumerate}[label=\Alph*.]
+    \item
+    \begin{enumerate}[label=\theenumi\Alph*]
+        \item The smallest class of $f$ is $C^2$.
+        \item $f(x)=\begin{cases}
+            0 & \text{if } x \leq 0 \\
+            x^{k+1} & \text{if } x > 0
+        \end{cases}$.
+        \item First, we show that each of the component functions of $f$ are themselves smooth. Let $h(x)=0$, which is constant. Therefore, $h^{(k)}(x)=0$, and as such is smooth. Let $g(x)=e^{-x^{-1}}$. It is an exponential, and therefore
+              is smooth. We need only now consider $x=0$, where we show that $\lim_{x\rightarrow 0^-}f^{(k)}(x)=\lim_{x\rightarrow 0^+}f^{(k)}(x)$ for all $k\geq 0$. The $k$th derivative of $g(x)$ is \begin{equation}
+              \frac{d^{(k)}}{dx^{(k)}}(-x^{-1})e^{-x^{-1}}.
+              \end{equation} The $k$th derivative of $-x^{-1}$ is in the form $\pm \frac{1}{x^k}$, and therefore the $k$th derivative of $g(x)$ is $\pm \frac{e^{-x^{-1}}}{x^k}$. We assume without proof that $\lim_{x\rightarrow 0^+}\frac{e^{-x^{-1}}}{x^k}=0$. We have
+              previously shown that $h^{(k)}(x)=0$, and $\lim_{x\rightarrow 0^-}{0}=0$. Therefore, we have shown $f$ to be smooth, and we are done.
+        \item $f$ is not analytic.
+            \begin{proof}
+                We show that $f$ is not analytic by showing that its Taylor-Maclaurin series does not converge to $f$ on all of $\mathbb{R}$. The Taylor-Maclaurin series for  $e^{-x^{-1}}$ is
+              $\sum_{n=0}^{\infty}\frac{(-1)^n}{n!x^n}$. When $x=0$, this sum does not exist, and as a result the Taylor-Maclaurin
+              series of $f$ does not converge to $f$ on all of $\mathbb{R}$. Thus, we are done.
+            \end{proof}
+    \end{enumerate}
+    
+    \item
+    \begin{enumerate}[label=\theenumi\Alph*]
+        \item  For a positive-definite, symmetric, $m\times m$ matrix $G$, there exists a $\sqrt{G}$ such that $(\sqrt{G})^2 = G$.
+            \begin{proof}
+                Let $G$ be a symmetric, positive-definite, $m\times m$ matrix. By the spectral theorem, we know that
+              $G$ has $m$ orthogonal (and thus linearly independent) eigenvectors, and a corresponding $m$ real eigenvalues.
+              Furthermore, if $G$ has $m$ linearly independent eigenvectors, then the matrix $G$ diagonalizes as $PDP^{-1}$, where the columns
+              of $P$ are the $m$ eigenvectors of $G$, and $D$ is a diagonal matrix whose entries are the corresponding eigenvalues of $G$. Being 
+              positive-definite, $G$ has stricly positive eigenvalues, and therefore $D$ has contains only zeros and positive real numbers. As a result,
+              we can construct a matrix $\sqrt{D}$, such that $({\sqrt{D}})^2=D$ as follows:
+              \begin{equation*}
+              \sqrt{D}=\begin{bmatrix}
+              \sqrt{D_{1,1}} & 0 & \cdots & 0 \\
+              0 & \sqrt{D_{2,2}} & \cdots & 0 \\
+              \vdots & \vdots & \ddots & \vdots \\
+              0 & 0 & \cdots & \sqrt{D_{m,m}}
+              \end{bmatrix},
+              \end{equation*}
+              the entries of which are guaranteed to exist, as every entry of $D$ is greater than or equal to 0.
+              With this in mind, consider the matrix $P\sqrt{D}P^{-1}$. First, we show that $P\sqrt{D}P^{-1}$ is symmetric by showing
+              that it is equal to its tranpose. First note that because $G$ is symmetric, $PDP^{-1}=(P^{-1})^TDP^T$, and therefore
+              $P^{-1}=P^{T}$. Taking the transpose of $P\sqrt{D}P^{-1}$ results in 
+              \begin{equation}
+                (P^{-1})^T\sqrt{D}P^T
+              \end{equation}
+              Using the fact that $P^{-1}=P{^T}$, (1) is equivalent to $P\sqrt{D}P^{-1}$, therefore $P\sqrt{D}P^{-1}$ is a symmetric matrix.
+              Squaring this matrix, we see that it amounts to $P\sqrt{D}P^{-1}P\sqrt{D}P^{-1}$, which is indeed $G$. Thus, we are done.
+            \end{proof}
+        
+
+
+        \item There exists an invertible linear transformation $f: \mathbb{R}\rightarrow \mathbb{R}$ such that $v\cdot_{G} w = f(v)\cdot f(w)$ for all $v,w \in \mathbb{R}$.
+              \begin{proof}
+                Let $f(v)=\sqrt{G}v$. First, we show that $f$ is injective, and assume that $f(v)=f(w)$ for some $v,w \in {\mathbb{R}}^m$. By the definition of $f$, this is equivalent to $\sqrt{G}v=\sqrt{G}w$.
+                We now show that $\sqrt{G}$ has an inverse, by demonstrating that $(\sqrt{G})^{-1}=P(\sqrt{D})^{-1}P^{-1}$ from problem B.A. Note that since $D$ is a stricly positive diagonal matrix, $\sqrt{D}$ is as well, and is therefore invertible.
+                Then, $P\sqrt{D}P^{-1}P(\sqrt{D})^{-1}P^{-1}$ is indeed $I$, and we have shown $(\sqrt{G})^{-1}$ to be $P(\sqrt{D})^{-1}P^{-1}$. Left multiplying by $(\sqrt{G})^{-1}$, we see that $v=w$, thus showing that $f$ is injective.\newline
+                Next, we show that $f$ is surjective, and let $y$ be some element of $\mathbb{R}^m$. Consider $x=(\sqrt{G})^{-1}y$, which is also in $\mathbb{R}^m$.
+                Then, $f(x)=\sqrt{G}(\sqrt{G})^{-1}y$, which is indeed $y$. Therefore, for any $y\in \mathbb{R}^m$, there exists an $x\in \mathbb{R}^m$ such that $f(x)=y$. As such, we have shown
+                $f$ to be bijective.\newline
+                We now show that $f$ satisfies the relationship $v\cdot_{G} w = f(v)\cdot f(w)$ for any $v,w \in \mathbb{R}^m$. By definition, $f(v)\cdot f(w)=(\sqrt{G}v)^{T}I\sqrt{G}w$. Using rules of transposition,
+                this becomes $v^T\sqrt{G}I\sqrt{G}w$, which is indeed $v^TGw=v\cdot_{G} w$. Thus, we are done.
+              \end{proof}
+    \end{enumerate}
+\end{enumerate}
+\end{document}
