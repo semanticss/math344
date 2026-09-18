@@ -52,7 +52,7 @@
               $G$ has $m$ orthogonal (and thus linearly independent) eigenvectors, and a corresponding $m$ real eigenvalues.
               Furthermore, if $G$ has $m$ linearly independent eigenvectors, then the matrix $G$ diagonalizes as $PDP^{-1}$, where the columns
               of $P$ are the $m$ eigenvectors of $G$, and $D$ is a diagonal matrix whose entries are the corresponding eigenvalues of $G$. Being 
-              positive-definite, $G$ has stricly positive eigenvalues, and therefore $D$ has contains only zeros and positive real numbers. As a result,
+              positive-definite, $G$ has stricly positive eigenvalues, and therefore $D$ is a positive diagonal matrix. As a result,
               we can construct a matrix $\sqrt{D}$, such that $({\sqrt{D}})^2=D$ as follows:
               \begin{equation*}
               \sqrt{D}=\begin{bmatrix}
@@ -75,14 +75,14 @@
         
 
 
-        \item There exists an invertible linear transformation $f: \mathbb{R}\rightarrow \mathbb{R}$ such that $v\cdot_{G} w = f(v)\cdot f(w)$ for all $v,w \in \mathbb{R}$.
+        \item There exists an invertible linear transformation $f: \mathbb{R}^m\rightarrow \mathbb{R}^m$ such that $v\cdot_{G} w = f(v)\cdot f(w)$ for all $v,w \in \mathbb{R}^m$.
               \begin{proof}
-                Let $f(v)=\sqrt{G}v$. First, we show that $f$ is injective, and assume that $f(v)=f(w)$ for some $v,w \in {\mathbb{R}}^m$. By the definition of $f$, this is equivalent to $\sqrt{G}v=\sqrt{G}w$.
-                We now show that $\sqrt{G}$ has an inverse, by demonstrating that $(\sqrt{G})^{-1}=P(\sqrt{D})^{-1}P^{-1}$ from problem B.A. Note that since $D$ is a stricly positive diagonal matrix, $\sqrt{D}$ is as well, and is therefore invertible.
+                Let $f(v)=\sqrt{G}v$. We begin by showing that $f$ is invertible, by demonstrating that is bijective.\newline First, we show that $f$ is injective, and assume that $f(v)=f(w)$ for some $v,w \in {\mathbb{R}}^m$. By the definition of $f$, this is equivalent to $\sqrt{G}v=\sqrt{G}w$.
+                We now show that $\sqrt{G}$ has an inverse, by demonstrating that $(\sqrt{G})^{-1}=P(\sqrt{D})^{-1}P^{-1}$ from problem B.A. Note that since $D$ is a positive diagonal matrix, $\sqrt{D}$ is as well, and is therefore invertible.
                 Then, $P\sqrt{D}P^{-1}P(\sqrt{D})^{-1}P^{-1}$ is indeed $I$, and we have shown $(\sqrt{G})^{-1}$ to be $P(\sqrt{D})^{-1}P^{-1}$. Left multiplying by $(\sqrt{G})^{-1}$, we see that $v=w$, thus showing that $f$ is injective.\newline
                 Next, we show that $f$ is surjective, and let $y$ be some element of $\mathbb{R}^m$. Consider $x=(\sqrt{G})^{-1}y$, which is also in $\mathbb{R}^m$.
                 Then, $f(x)=\sqrt{G}(\sqrt{G})^{-1}y$, which is indeed $y$. Therefore, for any $y\in \mathbb{R}^m$, there exists an $x\in \mathbb{R}^m$ such that $f(x)=y$. As such, we have shown
-                $f$ to be bijective.\newline
+                $f$ to be bijective, and therefore invertible.\newline
                 We now show that $f$ satisfies the relationship $v\cdot_{G} w = f(v)\cdot f(w)$ for any $v,w \in \mathbb{R}^m$. By definition, $f(v)\cdot f(w)=(\sqrt{G}v)^{T}I\sqrt{G}w$. Using rules of transposition,
                 this becomes $v^T\sqrt{G}I\sqrt{G}w$, which is indeed $v^TGw=v\cdot_{G} w$. Thus, we are done.
               \end{proof}
