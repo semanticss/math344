@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\newtheorem{lemma}{Lemma}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{bm}
+\usetikzlibrary{shapes.geometric}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+
+\pagestyle{fancy}
+\fancyhead[l]{Hudson Benites}
+\fancyhead[c]{Day 2}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
+\fancyhead[r]{\today}
+
+\newcommand{\magnitude}[1]{\left\lvert #1 \right\rvert}
+
+\begin{document}
+REPLACE k s with KAPPA
+\begin{enumerate}[label=\Alph*., leftmargin=*]
+    \item $\kappa =\frac{\bm{v}\times \bm{a}}{{\vert \bm{v}\vert}^3}.$ \begin{proof}
+      Consider the following setup
+      \begin{center}
+      \begin{tikzpicture}
+        \draw[->] (0,0) -- (2,2) node[midway, above left]{$\bm{a}$};
+        \draw[->] (0,0) -- (0, 2) node[midway, above left]{$\bm{a^{\perp}}$};
+        \draw[->] (0,0) -- (4,0) node[pos=1, right]{$\bm{v}$};
+        \draw[->] (0,0) -- (2,0) node[midway, below]{$\bm{a}^{\parallel}$};
+        \draw (0.6,0) arc (0:45:0.6) node[midway, right]{$\theta$};
+      \end{tikzpicture}
+    \end{center}
+    From the above picture, we can see that $\sin(\theta)=\frac{\magnitude{\bm{a}^{\perp}}}{\magnitude{\bm{a}}}$, which implies that \begin{equation*}
+      \magnitude{\bm{a}}\sin(\theta)=\magnitude{\bm{\alpha}^{\perp}}.
+    \end{equation*}
+     Note that $\magnitude{\bm{v}\times\bm{a}}=\magnitude{\bm{v}}\magnitude{\bm{a}}\sin(\theta)$. Using the equation from above, we see that $\magnitude{\bm{v}\times\bm{a}}=\magnitude{\bm{v}}\magnitude{\bm{a}^{\perp}}$. Dividing by $\magnitude{\bm{v}}^3$, we compute\begin{equation*}
+      \frac{\magnitude{\bm{v}\times\bm{a}}}{\magnitude{\bm{v}}^3}=\frac{\magnitude{\bm{v}}\magnitude{\bm{a}^{\perp}}}{\magnitude{\bm{v}}^3}=\frac{\magnitude{\bm{a}}^{\perp}}{\magnitude{\bm{v}}^2}=\kappa.
+     \end{equation*}
+     We are done.
+    \end{proof}
+    \item $\kappa = \frac{\dot{x}\ddot{y}-\ddot{x}\dot{y}}{{(\dot{x}^2+\dot{y}^2)}^{\frac{3}{2}}}$.\begin{proof}
+    We can embed $\bm{\alpha}$ into $\mathbb{R}^3$ by constructing an equivalent $\bm{\alpha}: \mathbb{R}\rightarrow\mathbb{R}^3$, $\bm{\alpha}=(x(u),y(u),0)$. We can see that $\bm{\dot{\alpha}}=(\dot{x}(u),\dot{y}(u),0)$ and $\bm{\ddot{\alpha}}=(\ddot{x}(u),\ddot{y}(u),0)$. 
+    We compute that\begin{equation*}
+      \bm{\dot{\alpha}}\times \bm{\ddot{\alpha}}=\dot{x}\ddot{y}-\ddot{x}\dot{y}.
+    \end{equation*}
+    We also compute that\begin{equation*}
+      \magnitude{\bm{\dot{\alpha}}}=\sqrt{\dot{x}^2+\dot{y}^2}.
+    \end{equation*}
+    Using the identity proven in (A), we see that\begin{equation*}
+      \kappa = \frac{ \bm{\dot{\alpha}}\times \bm{\ddot{\alpha}}}{(\magnitude{\bm{\dot{\alpha}}})^3}=\frac{\dot{x}\ddot{y}-\ddot{x}\dot{y}}{(\dot{x}^2+\dot{y}^2)^{3/2}}
+    \end{equation*}
+    Thus, we are done.
+      \end{proof}
+    \item $\frac{d\bm{T}}{ds}=\kappa N$. \begin{proof} $\bm{T}$ exists only for a regular curve, and therefore we assume $\bm{\alpha}$ to be regular. By definition, $\bm{T}=\frac{\bm{\dot{\alpha}}}{\vert\bm{\dot{\alpha}}\vert}$. Because $\bm{\alpha}$ is regular
+          there exists an arc length parameterization $s(u)$ that gives a $\bm{T}=\bm{\dot{\alpha}}(s)$, because $\vert \bm{\dot{\alpha}}(s)\vert=1$ for all $u$. Differentiating with respect to $s$, we compute \begin{equation*}
+            \frac{d\bm{T}}{ds}=\bm{\ddot{\alpha}}(s).
+          \end{equation*} We now show that $a^{\perp}=a$ for all $u$. Note that because $\bm{\alpha}$ is arc length parameterized, $\vert \bm{\dot{\alpha}} \vert = 1$ always, and thus $1=\bm{\dot{\alpha}}\cdot\bm{\dot{\alpha}}$. We compute
+          \begin{equation*}
+            \frac{d}{du}(1)=\frac{d}{du}(\bm{\dot{\alpha}}\cdot\bm{\dot{\alpha}}),
+          \end{equation*} and so
+          \begin{equation*}
+            0 = \bm{\ddot{\alpha}}\cdot\bm{\dot{\alpha}}+\bm{\dot{\alpha}}\cdot\bm{\ddot{\alpha}}=2(\bm{\dot{\alpha}}\cdot\bm{\ddot{\alpha}}).
+          \end{equation*} The above equation implies that $\bm{\dot{\alpha}}$ is perpendicular to $\bm{\ddot{\alpha}}$, since their dot product is 0.
+          Therefore, there is no component of acceleration that points in the direction $v$; as such, it must be the case that $\bm{\ddot{\alpha}}^{\perp}=\bm{\ddot{\alpha}}$.
+          Note that $\kappa\bm{N} = \frac{\vert \bm{\ddot{\alpha}}^{\perp}\vert}{{\vert \bm{\dot{\alpha}}\vert}^2}\frac{\bm{\ddot{\alpha}}^{\perp}}{\vert\bm{\ddot{\alpha}}^{\perp}\vert}$. Since $\bm{\alpha}$ is arc length parameterized,
+          $\vert \bm{\dot{\alpha}}\vert=1$ always, so $\kappa N=\bm{\ddot{\alpha}}^{\perp}$, which we have shown to be equal to $\bm{\ddot{\alpha}}$. Therefore, $\frac{d\bm{T}}{ds}=\kappa N$, and we are done. 
+        \end{proof}
+      \item By assumption $\bm{\alpha}$ is regular, and therefore there exists an arc length parameterization (A.L.P) of $\bm{\alpha}$. Let $\bm{\alpha}$ be A.L.P-ed. Furthermore, let \begin{equation*} 
+        \bm{\beta}(v)=\frac{1}{\kappa(u_0)}(\bm{N}(u_0))(1-\cos(v))+\frac{1}{\kappa(u_0)}\sin(v)\bm{T}(u_0)+\alpha(u_0).
+      \end{equation*} Note that $\cos(v)$ and $\sin(v)$ are infinitely differentiable, and thus $\bm{\beta}$ is smooth. Furthermore, note that $\bm{\dot{\beta}}=\frac{1}{\kappa(u_0)}\sin(v)\bm{N}(u_0)+\frac{1}{\kappa(u_0)}\cos(v)\bm{T}(u_0)$, which can never be the zero vector.
+            Therefore, $\bm{\beta}$ is regular, and and A.L.P exists. Let $\bm{\beta}$ be A.L.P-ed. We show that $\beta$ satisifes (1)-(4).
+            \begin{enumerate}[label=(\arabic*)]
+              \item We compute\begin{equation*}
+                \bm{\beta}(0)=\frac{1}{\kappa(u_0)}(-\cos(0)+1)+0+\bm{\alpha}(u_0)=\bm{\alpha}(u_0).
+              \end{equation*}
+              \item We compute 
+              \begin{equation*}
+                \bm{T}_{\beta}(0)=\frac{\bm{\dot{\beta}}(0)}{\magnitude{\bm{\dot{\beta}}(0)}}=\frac{\sin(0)\bm{N}(u_0)+\cos(0)\bm{T}(u_0)}{\frac{1}{\kappa(u_0)}\kappa(u_0)}.
+              \end{equation*} Therefore, $\bm{T}_{\bm{\beta}}(0)=\bm{T}(u_0)$.
+              \item We compute \begin{equation*}
+                \bm{N}_{\bm{\beta}}(0)=\frac{\bm{\ddot{\beta}}^{\perp}(0)}{\magnitude{\bm{\ddot{\beta}}^{\perp}(0)}}=\frac{\cos(0)\bm{N}(u_0)-\sin(0)\bm{T}(u_0)}{\frac{1}{\kappa(u_0)}\kappa(u_0)}.
+              \end{equation*} Therefore, $\bm{N}_{\bm{\beta}}(0)=\bm{N}(u_0)$. From (C), we know that because $\bm{\beta}$ is A.L.P-ed, $\bm{\ddot{\beta}}^{\perp}=\bm{\ddot{\beta}}$, and therefore the equality above holds.
+              \item We compute\begin{equation*}
+                  \kappa_{\bm{\beta}}(0)=\frac{\magnitude{\bm{\ddot{\beta}}(0)}}{\magnitude{\bm{\dot{\beta}}(0)}}=\frac{\frac{1}{\kappa(u_0)}}{(\frac{1}{\kappa(u_0)})^2}=\kappa(u_0).
+              \end{equation*}
+              Therefore, $\kappa_{\bm{\beta}}=\kappa(u_0)$.
+            \end{enumerate}
+    \end{enumerate}
+\end{document}
