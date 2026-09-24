@@ -18,7 +18,7 @@
 
 \pagestyle{fancy}
 \fancyhead[l]{Hudson Benites}
-\fancyhead[c]{Day 2}
+\fancyhead[c]{Day 3}
 \fancyfoot[c]{\thepage}
 \renewcommand{\headrulewidth}{0.2pt}
 \setlength{\headheight}{15pt}
@@ -27,7 +27,6 @@
 \newcommand{\magnitude}[1]{\left\lvert #1 \right\rvert}
 
 \begin{document}
-REPLACE k s with KAPPA
 \begin{enumerate}[label=\Alph*., leftmargin=*]
     \item $\kappa =\frac{\bm{v}\times \bm{a}}{{\vert \bm{v}\vert}^3}.$ \begin{proof}
       Consider the following setup
@@ -64,7 +63,7 @@ REPLACE k s with KAPPA
     \item $\frac{d\bm{T}}{ds}=\kappa N$. \begin{proof} $\bm{T}$ exists only for a regular curve, and therefore we assume $\bm{\alpha}$ to be regular. By definition, $\bm{T}=\frac{\bm{\dot{\alpha}}}{\vert\bm{\dot{\alpha}}\vert}$. Because $\bm{\alpha}$ is regular
           there exists an arc length parameterization $s(u)$ that gives a $\bm{T}=\bm{\dot{\alpha}}(s)$, because $\vert \bm{\dot{\alpha}}(s)\vert=1$ for all $u$. Differentiating with respect to $s$, we compute \begin{equation*}
             \frac{d\bm{T}}{ds}=\bm{\ddot{\alpha}}(s).
-          \end{equation*} We now show that $a^{\perp}=a$ for all $u$. Note that because $\bm{\alpha}$ is arc length parameterized, $\vert \bm{\dot{\alpha}} \vert = 1$ always, and thus $1=\bm{\dot{\alpha}}\cdot\bm{\dot{\alpha}}$. We compute
+          \end{equation*} We now show that $\bm{\ddot{\alpha}}^{\perp}=\bm{\ddot{\alpha}}$ for all $u$. Note that because $\bm{\alpha}$ is arc length parameterized, $\vert \bm{\dot{\alpha}} \vert = 1$ always, and thus $1=\bm{\dot{\alpha}}\cdot\bm{\dot{\alpha}}$. We compute
           \begin{equation*}
             \frac{d}{du}(1)=\frac{d}{du}(\bm{\dot{\alpha}}\cdot\bm{\dot{\alpha}}),
           \end{equation*} and so
@@ -76,7 +75,7 @@ REPLACE k s with KAPPA
           $\vert \bm{\dot{\alpha}}\vert=1$ always, so $\kappa N=\bm{\ddot{\alpha}}^{\perp}$, which we have shown to be equal to $\bm{\ddot{\alpha}}$. Therefore, $\frac{d\bm{T}}{ds}=\kappa N$, and we are done. 
         \end{proof}
       \item By assumption $\bm{\alpha}$ is regular, and therefore there exists an arc length parameterization (A.L.P) of $\bm{\alpha}$. Let $\bm{\alpha}$ be A.L.P-ed. Furthermore, let \begin{equation*} 
-        \bm{\beta}(v)=\frac{1}{\kappa(u_0)}(\bm{N}(u_0))(1-\cos(v))+\frac{1}{\kappa(u_0)}\sin(v)\bm{T}(u_0)+\alpha(u_0).
+        \bm{\beta}(v)=\frac{1}{\kappa(u_0)}(\bm{N}(u_0))(1-\cos(v))+\frac{1}{\kappa(u_0)}\sin(v)\bm{T}(u_0)+\bm{\alpha}(u_0).
       \end{equation*} Note that $\cos(v)$ and $\sin(v)$ are infinitely differentiable, and thus $\bm{\beta}$ is smooth. Furthermore, note that $\bm{\dot{\beta}}=\frac{1}{\kappa(u_0)}\sin(v)\bm{N}(u_0)+\frac{1}{\kappa(u_0)}\cos(v)\bm{T}(u_0)$, which can never be the zero vector.
             Therefore, $\bm{\beta}$ is regular, and and A.L.P exists. Let $\bm{\beta}$ be A.L.P-ed. We show that $\beta$ satisifes (1)-(4).
             \begin{enumerate}[label=(\arabic*)]
