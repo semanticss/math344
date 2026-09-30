@@ -35,7 +35,7 @@
           \textbf{Case 2} When $n\geq 2$, $x$ is injective if and only if the columns of $A$ are linearly independent.\\
           To show $x$ is surjective, we consider two cases:\\
           \textbf{Case 1} $n\geq 3$. In this case, $x$ is never surjective because its image has at most dimension 2.\\
-          \textbf{Case 2} $n=2$. In this case, we can construct any $(a,b)$ by letting $(u,v)=A^{-1}(a,b)$, and $x$ is surjective.\\
+          \textbf{Case 2} $n=2$. In this case, we can construct any $(a,b)$ by letting $(u,v)=A^{-1}(a,b)$, and $x$ is surjective. Note that $A$ must be invertible in this case.\\
           \textbf{Case 3} $n=1$. In this case, $x$ is surjective when $A\neq0$.
 \item We compute\begin{equation*}
     \pderiv[x]{u}=\pderiv{u}A\begin{bmatrix}
@@ -54,7 +54,7 @@
         0\\1
     \end{bmatrix}.
 \end{equation*}
-We again have cases. When the rank of $A$ is less than 2, $u$ and $v$ are linearly dependent and $x$ is not a regular surface.
+We again have cases. When the rank of $A$ is less than 2, $\pderiv[x]{u}$ and $\pderiv[x]{v}$ are linearly dependent and $x$ is not a regular surface.
 When $\text{rank } A = 2$, then $x$ is a regular surface.
 \end{enumerate}
 \item \begin{enumerate}[label=.\Alph*]

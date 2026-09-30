@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\newtheorem{lemma}{Lemma}
+\usepackage{braket}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{bm}
+\usetikzlibrary{shapes.geometric}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\pderiv}[2][]{\frac{\partial#1}{\partial#2}}
+
+\pagestyle{fancy}
+\fancyhead[l]{Hudson Benites}
+\fancyhead[c]{Day 6}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
+\fancyhead[r]{\today}
+
+\newcommand{\magnitude}[1]{\left\lvert #1 \right\rvert}
+
+\begin{document}
+\begin{enumerate}[label=\Alph*., leftmargin=*]
+\item I wrote \texttt{kappa = Simplify[Norm[aPerp] / Dot[v, v], Element[u, Reals]]}. It produced $2\sqrt{\frac{1+9u^2+9u^4}{{(1+4u^2+9u^4)}^3}}$.
+\item I wrote \begin{verbatim}
+    alpha = {Cos[u], Sin[u], u}
+    everything[alpha]
+\end{verbatim}
+which produced \begin{figure}[h]\label{Jake Spoon}  
+\centering
+\includegraphics[width=18cm,keepaspectratio]{output.png}
+% If the figure is saved in the same folder as the main .tex file, then you don't need to include the path. In Overleaf, you just need to add the figure to the project.
+\caption{My code.}
+\end{figure}\par
+The torsion is the last element of the list, $\frac{3}{1+9u^2+9u^4}$. By observation, $\tau$ is maximized when $u=0$. 
+\item I wrote\begin{verbatim}
+    Simplify[f /. {x1 -> x[[1]], x2 -> x[[2]], x3 -> x[[3]]}]
+\end{verbatim}
+which produced\begin{verbatim}
+    {u, v}
+\end{verbatim}
+\item \begin{enumerate}[label=.\Alph*]
+    \item Using Mathematica, I found that $\pderiv[x]{u}=(2u, -4+3u^2,0)$ and $\pderiv[x]{v}=(0,0,1)$. By observation, these are linearly independent for all $(u,v)$ and thus $x$ is a regular surface.
+    \item $x(u,v)=(u^2-4,u(u^2-4),v)$ is not a local parameterization of a surface because it is not injective (a.k.a it intersects with itself). Consider (2,0) and (-2,0). We see by observation that $x(2,0)=(0,0,0)=x(-2,0)$.
+    \item The image of $x$ is (?) a surface. Currently, the image of $x$ is not a surface because it is not injective. If we create two partitions in $U$, namely $\{(u,v)\in \mathbb{R}^2|u < 0\}$ and $\{(u,v)\in \mathbb{R}^2|u > 0\}$, then $x$ is a local parameterization on all of $S$.
+\end{enumerate}
+\end{enumerate}
+\end{document}
