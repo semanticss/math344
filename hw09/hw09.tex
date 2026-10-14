@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{dsfont}
+\usetikzlibrary{shapes.geometric}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+\pgfplotsset{compat=1.18}
+
+\newcommand{\pderiv}[2][]{\frac{\partial#1}{\partial#2}}
+
+\pagestyle{fancy}
+\fancyhead[l]{Hudson Benites}
+\fancyhead[c]{Day 9}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
+\fancyhead[r]{\today}
+
+\newcommand{\magnitude}[1]{\left\lvert #1 \right\rvert} %chktex 1
+
+\begin{document}
+\begin{enumerate}[label=\Alph*., leftmargin=*]
+    \item \begin{proof}
+        Let $\beta$ be regular. We have that $\alpha=x\circ \beta$, and so $\dot{\alpha}=\nabla x \cdot \dot{\beta}=x_u\dot{\beta_1}+x_v\dot{\beta_2}$.
+        We know that $\dot{\beta_1}$ and $\dot{\beta_2}$ never equal 0 at the same time. We also know that neither $x_u$ or $x_v$ are 0 because $x$ is a local parameterization.
+        Therefore, $\dot{\alpha}$ is regular.
+
+        Next, let $\alpha$ be regular. Similarly, $\dot{\alpha}=\nabla x \cdot \dot{\beta_1}=x_u\dot{\beta_2}+x_v\dot{\beta}$. $x_u$ and $x_v$ are linearly independent, and the LHS can never be 0, therefore $\dot{\beta_1}$ and $\dot{\beta_2}$ are
+        never 0 at the same time. Therefore, $\beta$ is regular
+    \end{proof}
+    \item Below is my code to find the matrix $g$.\begin{figure}[h]\label{code}  
+        \centering
+            \includegraphics[width=10cm,keepaspectratio]{math.png}
+            \caption{My code.}
+        \end{figure}\par
+        So, $g=\frac{4}{{(1+u^2+v^2)}^2}\mathds{1}$. This is a scalar of the identity matrix.
+    \item \begin{enumerate}
+        \item We compute that $x_u=(\cos v\cos u, \sin v\cos u, -\sin u)$. We also compute that $x_v=(-\sin u\sin v, \sin u\cos v, 0)$. Then,
+        $x_u\cdot x_u=\cos^2 u\cos^2 v+\cos^2 u\sin^2 v + \sin^2 u=1$. Also, $x_u\cdot x_v=\cos v\cos u \sin u\sin v - \cos v\cos u \sin u\sin v = 0$. Finally,
+        $x_v \cdot x_v = \sin^2 u\sin^2 v+\sin^2 u\cos^2 v = \sin^2 u$. So,\begin{equation*}
+            g=\begin{bmatrix}
+                1&0\\
+                0&\sin^2 u
+            \end{bmatrix}
+        \end{equation*}.
+        \item I could have used the fact that $J^{T}J=g$, where $J$ is the Jacobian.
+        \item Let $x_1$ be the quasi-inverse of the stereographic project of $\mathbb{S}^2$ and $x_2$ be the parameterization of $\mathbb{S}^2$ using spherical coordinates.
+        $x_1$ sends the point $(1,0)$ to $(1,0,0)$, and at that point $g_1=\frac{4}{{(1+1)}^2}\mathds{1}=\mathds{1}$. $x_2$ sends the point $(\frac{\pi}{2}, 0)$ to $(1,0,0)$, and $g_2=\begin{bmatrix}
+            1&0\\
+            0&\sin^2(\frac{\pi}{2})
+        \end{bmatrix}=\mathds{1}$. So, they do have the same $g$ matrix at $(1,0,0)$.
+        \item $x_1$ sends the point $(\sqrt{2}+1,0)$ to $(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}})$. At that point $g_1=\frac{4}{{(2+\sqrt{2})}^2}\mathds{1}$. $x_2$ sends the point $(\frac{\pi}{4},0)$ to
+        $(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}})$. At that point $g_2=\begin{bmatrix}
+            1&0\\
+            0&\frac{1}{2}
+        \end{bmatrix}$. By observation, $g_1\neq g_2$. So, $x_1$ and $x_2$ have different $g$ matrices at $(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}})$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

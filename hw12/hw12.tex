@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{dsfont}
+\usetikzlibrary{shapes.geometric}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+\pgfplotsset{compat=1.18}
+
+\newcommand{\pderiv}[2][]{\frac{\partial#1}{\partial#2}}
+
+\pagestyle{fancy}
+\fancyhead[l]{Hudson Benites}
+\fancyhead[c]{Day 12}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\setlength{\headheight}{15pt}
+\fancyhead[r]{\today}
+
+\newcommand{\magnitude}[1]{\left\lvert #1 \right\rvert} %chktex 1
+
+\begin{document}
+\begin{enumerate}[label=\Alph*., leftmargin=*]
+    \item Let $h(u,v):U'\to V'=(u\cos v, u\sin v)$ where $U'=U$ and $V'=V\setminus\{(s,t):t=0,s=-1\}$.
+    \item We first compute $g_x$. We compute that $x_u=(\cos v, \sin v, 1)$ and $x_v=(-u\sin v, u\cos v, 0)$. Then, $x_u\cdot x_u=\cos^ v +\sin^2 v + 1 = 2$, $x_u\cdot x_v=-u\cos v\sin v+u\cos v\sin v = 0$ and
+    $x_v\cdot x_v=u^2\cos^ v +u^2\sin^2v=u^2$. So, $g_x=\begin{bmatrix}
+        2&0\\
+        0&u^2
+    \end{bmatrix}$. We now compute $g_y$. We compute that \begin{equation*}
+        g_y=\begin{bmatrix}
+        1+\frac{s^2}{s^2+t^2}&\frac{st}{s^2+t^2}\\
+        \frac{st}{s^2+t^2}&1+\frac{t^2}{s^2+t^2}
+    \end{bmatrix}\end{equation*} Evaluating at $h$, $g_y$ becomes $g_y=\begin{bmatrix}
+        1+\cos^2 v&\cos v\sin v\\
+        \cos v\sin v&1+\sin^2 u
+    \end{bmatrix}$. We then compute $\pderiv[h]{\bm{u}}=\begin{bmatrix}
+        \pderiv[h]{u}&\pderiv[h]{v}
+    \end{bmatrix}=\begin{bmatrix}
+        \cos v&-u\sin v\\
+        \sin v&u\cos v
+    \end{bmatrix}$. Next, we compute that\begin{equation*}
+        {\pderiv[h]{\bm{u}}}^{T}g_y=\begin{bmatrix}
+            \cos v+\cos^3 v+\sin^3v\cos v&\cos^2v\sin v +\sin v +\sin^3 v\\
+            -u\sin v-u\cos^2 v\sin v +u\cos^2v\sin v& u\cos v
+        \end{bmatrix}
+    \end{equation*} We multiply this result by ${\pderiv[h]{\bm{u}}}$:\begin{equation*}
+        \begin{bmatrix}
+            \cos v+\cos^3 v+\sin^3v\cos v&\cos^2v\sin v +\sin v +\sin^3 v\\
+            -u\sin v-u\cos^2 v\sin v +u\cos^2v\sin v& u\cos v
+        \end{bmatrix}\begin{bmatrix}
+            \cos v&-u\sin v\\
+            \sin v&u\cos v
+        \end{bmatrix}\end{equation*} and find that \begin{equation*} \begin{bmatrix}
+            \cos^2 v+\cos^4 v+2\sin^2 v\cos^2 v+\sin^2 v+\sin^4 v&0\\
+            0&u^2\sin^2 v+u^2\cos^2 v
+        \end{bmatrix}
+    \end{equation*} This simplifies to\begin{equation*}
+        \begin{bmatrix}
+            {(\cos^2 v+\sin^2 v)}^2 + 1&0\\
+            0&u^2
+        \end{bmatrix}=\begin{bmatrix}
+            2&0\\
+            0&u^2
+        \end{bmatrix}
+    \end{equation*}
+    \item Under $x$, $x_1=u\cos v$. This is greater than or equal to 0 when $u\geq 0$ and $\cos v\geq 0$. $\cos v\geq 0$ when $v\in[-\frac{\pi}{2},\frac{\pi}{2}]$. So, the corresponding $Q$ of $U$
+    is $(0,1)\times(-\frac{\pi}{2},\frac{\pi}{2})$. The area of $R$ as computed using $x$ and $Q$ is\begin{equation*}
+        \iint_R 1\,dA=\iint_Q \sqrt{\det g_x}\,du\,dv=\int_{-\pi/2}^{\pi/2}\int_{0}^{1}\sqrt{\det g_x}\,du\,dv=\sqrt{2}\int_{-\pi/2}^{\pi/2}(\left. \frac{u^2}{2}\right|_{0}^{1})\,dv=\frac{\sqrt{2}\pi}{2}.
+    \end{equation*} Under $y$, $x_1=s$, so we want $s\geq 0$. This corresponds to the region $P=\{(s,t):0<s^2+t^2<1, s\geq 0\}$. This is the right half of the unit circle. We can integrate using polar coordinates.\begin{equation*}
+        \iint_R 1\,dA=\iint_{P}\sqrt{\det g_y}\,ds\,dt=\sqrt{2}\iint_{P}1\,ds\,dt=\int_{-\pi/2}^{\pi/2}\int_{0}^{1}r\,dr\,d\theta=\frac{\sqrt{2}\pi}{2}.
+    \end{equation*}
+\end{enumerate} 
+\end{document}
